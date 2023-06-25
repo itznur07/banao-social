@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from "react";
 import {
-  FaCalendar,
-  FaCalendarDay,
   FaExclamationCircle,
   FaMapMarkerAlt,
   FaPenAlt,
   FaPencilAlt,
   FaRegWindowClose,
-  FaShoppingBag,
   FaThumbsUp,
   FaUniversity,
 } from "react-icons/fa";
-import PostCard from "./PostCard";
+import PostCard from "./Post";
 
 const Content = ({ join }) => {
   const [locationEdit, setLocationEdit] = useState(false);
@@ -61,38 +58,6 @@ const Content = ({ join }) => {
       personImg:
         "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
       personName: "Sarah West",
-    },
-    {
-      id: 2,
-      image:
-        "https://images.unsplash.com/photo-1544377193-33dcf4d68fb5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1332&q=80",
-      icon: <FaCalendar />,
-      tag: "Meet",
-      title: "Finance & Investment Elite Social Mixer @Lujiazui",
-      cIcon: <FaCalendarDay />,
-      cText: "Fri, 12 Oct, 2018",
-      lIcon: <FaMapMarkerAlt />,
-      lText: "Ahmedabad, India",
-      btnText: "Visit Website",
-      personImg:
-        "https://images.unsplash.com/photo-1499952127939-9bbf5af6c51c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1176&q=80",
-      personName: "Ronal Jones",
-    },
-    {
-      id: 3,
-      image:
-        "https://images.unsplash.com/photo-1573495627361-d9b87960b12d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80",
-      icon: <FaShoppingBag />,
-      tag: "Job",
-      title: "Software Developer",
-      cIcon: <FaCalendarDay />,
-      cText: "Innovaccer Analytics Private Ltd.",
-      lIcon: <FaMapMarkerAlt />,
-      lText: "Noida, India",
-      btnText: "Apply on Timesjobs",
-      personImg:
-        "https://images.unsplash.com/photo-1504593811423-6dd665756598?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
-      personName: "Joseph Gray",
     },
   ]);
 
