@@ -1,12 +1,16 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaEye, FaFacebook, FaGoogle, FaLinkedin } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import { AuthContext } from "../../Provider/AuthContext";
 import login from "../../assets/login.svg";
 
 const Login = () => {
   // useTitle("Login");
   const [show, setShow] = useState(false);
+  const { logInUserWithEmailPassword, signInWithGoogle } =
+    useContext(AuthContext);
 
   const {
     register,
@@ -15,39 +19,69 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location?.state?.from?.pathname || "/";
+
+
   const handleSignIn = ({ email, password }) => {
-    // logInUserWithEmailPassword(email, password)
-    //   .then(() => {
-    //     Swal.fire({
-    //       icon: "success",
-    //       title: "Congratulations!🎊",
-    //       text: "You login successfull!",
-    //       confirmButtonText: "Awesome!",
-    //       confirmButtonColor: "#49BBBD",
-    //       iconColor: "text-green-500",
-    //       customClass: {
-    //         title: "text-green-500 text-3xl",
-    //         text: "text-slate-500",
-    //       },
-    //     });
-    //     reset();
-    //     navigate(from, { replace: true });
-    //   })
-    //   .catch((error) => {
-    //     var errorCode = error.code;
-    //     var errorMessage = error.message;
-    //     if (errorCode === "auth/wrong-password") {
-    //       Swal.fire({
-    //         icon: "error",
-    //         title: "Error",
-    //         text: "Your Password is wrong!",
-    //         confirmButtonText: "ok!",
-    //         confirmButtonColor: "#49BBBD",
-    //       });
-    //     } else {
-    //       console.log(errorMessage);
-    //     }
-    //   });
+    logInUserWithEmailPassword(email, password)
+      .then(() => {
+        Swal.fire({
+          icon: "success",
+          title: "Congratulations!🎊",
+          text: "You login successfull!",
+          confirmButtonText: "Awesome!",
+          confirmButtonColor: "#49BBBD",
+          iconColor: "text-green-500",
+          customClass: {
+            title: "text-green-500 text-3xl",
+            text: "text-slate-500",
+          },
+        });
+        reset();
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        if (errorCode === "auth/wrong-password") {
+          Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "Your Password is wrong!",
+            confirmButtonText: "ok!",
+            confirmButtonColor: "#49BBBD",
+          });
+        } else {
+          console.log(errorMessage);
+        }
+      });
+  };
+
+  const handleGoogleSignIn = () => {
+    signInWithGoogle()
+      .then(() => {
+        Swal.fire({
+          icon: "success",
+          title: "Congratulations!🎊",
+          text: "SignIn successfull!",
+          confirmButtonText: "Awesome!",
+          confirmButtonColor: "#0A69DC",
+          iconColor: "text-green-500",
+          customClass: {
+            title: "text-green-500 text-3xl",
+            text: "text-slate-500",
+          },
+        });
+        navigate(from, { replace: true });
+        reset();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -130,7 +164,11 @@ const Login = () => {
           <button type='button' className='p-3 rounded bg-slate-100'>
             <FaFacebook />
           </button>
-          <button type='button' className='p-3 rounded bg-slate-100'>
+          <button
+            onClick={handleGoogleSignIn}
+            type='button'
+            className='p-3 rounded bg-slate-100'
+          >
             <FaGoogle />
           </button>
           <button type='button' className='p-3 rounded bg-slate-100'>
