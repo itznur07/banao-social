@@ -46,8 +46,8 @@ const ContentNav = () => {
       ) : (
         <div>
           <div
-            className='mx-auto mt-5 border-b py-3 border-[#E0E0E0]'
-            style={{ width: "1040px" }}
+            className='mx-auto max-w-7xl mt-5 border-b py-3 border-[#E0E0E0]'
+            
           >
             <div className='flex items-center justify-between'>
               <div>

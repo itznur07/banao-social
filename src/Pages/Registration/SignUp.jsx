@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { FaEye, FaFacebook, FaGoogle, FaLinkedin } from "react-icons/fa";
 import { Link } from "react-router-dom";
 // import useTitle from "../../Hooks/useTitle";
-// import login from "../../assets/login.svg";
+import login from "../../assets/login.svg";
 
 const Signup = () => {
   const [show, setShow] = useState(false);
@@ -18,16 +18,16 @@ const Signup = () => {
   const handleSignUp = ({ email, password, name }) => {};
 
   return (
-    <div className='flex  max-w-7xl mx-auto justify-center pb-3 items-center'>
+    <div className='flex  max-w-7xl mx-auto h-screen justify-center pb-3 items-center'>
       <div>
-        <img className='max-w-xl md:block hidden' src='' alt='login' />
+        <img className='max-w-xl md:block hidden' src={login} alt='login' />
       </div>
       <form
         onSubmit={handleSubmit(handleSignUp)}
         className='bg-white py-10 px-28 '
       >
-        <h2 className='text-3xl text-center font-semibold text-gray-800 mb-8'>
-          Create Account
+        <h2 className='text-3xl text-center  font-semibold text-gray-800 mb-8'>
+          Registration
         </h2>
         <div className='mb-4'>
           <label htmlFor='name' className='block text-gray-700 font-bold mb-2'>
@@ -37,7 +37,7 @@ const Signup = () => {
             type='name'
             name='name'
             id='name'
-            className={`w-80 border rounded-lg py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2  focus:ring-[#49BBBD]  focus:border-transparent focus:shadow-lg focus:transform focus:transition focus:duration-500 focus:scale-105 ${
+            className={`w-80 border rounded-lg py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2  focus:ring-[#0A69DC]  focus:border-transparent focus:shadow-lg focus:transform focus:transition focus:duration-500 focus:scale-105 ${
               errors.name ? "border-red-500" : ""
             }`}
             {...register("name", {
@@ -57,7 +57,7 @@ const Signup = () => {
             type='email'
             name='email'
             id='email'
-            className={`w-80 border rounded-lg py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2  focus:ring-[#49BBBD]  focus:border-transparent focus:shadow-lg focus:transform focus:transition focus:duration-500 focus:scale-105 ${
+            className={`w-80 border rounded-lg py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2  focus:ring-[#0A69DC]  focus:border-transparent focus:shadow-lg focus:transform focus:transition focus:duration-500 focus:scale-105 ${
               errors.email ? "border-red-500" : ""
             }`}
             {...register("email", {
@@ -81,7 +81,7 @@ const Signup = () => {
             type={`${show === true ? "text" : "password"}`}
             name='password'
             id='password'
-            className={`relative w-80 border rounded-lg py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2  focus:ring-[#49BBBD]  focus:border-transparent focus:shadow-lg focus:transform focus:transition focus:duration-500 focus:scale-105 ${
+            className={`relative w-80 border rounded-lg py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2  focus:ring-[#0A69DC]  focus:border-transparent focus:shadow-lg focus:transform focus:transition focus:duration-500 focus:scale-105 ${
               errors.password ? "border-red-500" : ""
             }`}
             {...register("password", {
@@ -90,7 +90,7 @@ const Signup = () => {
           />
           <span
             onClick={() => setShow(!show)}
-            className='absolute mt-3 mx-3 cursor-pointer text-[#49BBBD]'
+            className='absolute mt-3 mx-3 cursor-pointer text-[#0A69DC]'
           >
             <FaEye size={18}></FaEye>
           </span>
@@ -108,7 +108,7 @@ const Signup = () => {
             type='text'
             name='photo'
             id='photo'
-            className={`w-80 border rounded-lg py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2  focus:ring-[#49BBBD]  focus:border-transparent focus:shadow-lg focus:transform focus:transition focus:duration-500 focus:scale-105 ${
+            className={`w-80 border rounded-lg py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2  focus:ring-[#0A69DC]  focus:border-transparent focus:shadow-lg focus:transform focus:transition focus:duration-500 focus:scale-105 ${
               errors.photo ? "border-red-500" : ""
             }`}
             {...register("photo", {
@@ -122,11 +122,11 @@ const Signup = () => {
         </div>
         <button
           type='submit'
-          className='bg-[#49BBBD]  text-white w-full font-bold py-2 mt-2 px-4 rounded focus:outline-none focus:shadow-outline'
+          className='bg-[#0A69DC]  text-white w-full font-bold py-2 mt-2 px-4 rounded focus:outline-none focus:shadow-outline'
         >
           Signup
         </button>
-        <div className='text-center mt-3 space-x-4 text-[#49BBBD]'>
+        <div className='text-center mt-3 space-x-4 text-[#0A69DC]'>
           <button type='button' className='p-3 rounded bg-slate-100'>
             <FaFacebook />
           </button>
@@ -140,7 +140,7 @@ const Signup = () => {
         <div className='text-center text-md mt-3 text-sm text-slate-600'>
           already signup?{" "}
           <Link to='/login'>
-            <span className='text-[#49BBBD] font-medium'>Login</span>
+            <span className='text-[#0A69DC] font-medium'>Login</span>
           </Link>
         </div>
       </form>

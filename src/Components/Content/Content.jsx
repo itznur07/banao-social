@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from "react";
-import {
-  FaExclamationCircle,
-  FaMapMarkerAlt,
-  FaPenAlt,
-  FaPencilAlt,
-  FaRegWindowClose,
-  FaThumbsUp,
-  FaUniversity,
-} from "react-icons/fa";
+import { FaPenAlt, FaUniversity } from "react-icons/fa";
+import FriendRequest from "../FriendReq/FriendRequest";
+import Friends from "../Friends/Friends";
+import GroupConversation from "../GroupConversation/GroupConversation";
 import PostCard from "./Post";
 
 const Content = ({ join }) => {
@@ -72,111 +67,20 @@ const Content = ({ join }) => {
       ) : (
         <>
           {" "}
-          <div className='mx-auto mt-10' style={{ width: "1040px" }}>
+          <div className='max-w-7xl mx-auto mt-10'>
             <div className='grid grid-cols-12 gap-20'>
-              <div className='col-span-8'>
+              <div className="col-span-3">
+
+              </div>
+              <div className='col-span-5'>
                 {posts.map((post) => (
                   <PostCard key={post.id} post={post} />
                 ))}
               </div>
               <div className='col-span-4'>
-                <div className='flex items-center justify-between border-b pb-3 border-[#E0E0E0]'>
-                  <div className='flex items-center space-x-2 cursor-pointer'>
-                    <span>
-                      <FaMapMarkerAlt />
-                    </span>
-                    {locationEdit ? (
-                      <input
-                        type='text'
-                        className='border-b p-1 outline-none'
-                        placeholder='Enter your location'
-                      />
-                    ) : (
-                      <span>Noida, India</span>
-                    )}
-                  </div>
-                  <div
-                    onClick={() => setLocationEdit(!locationEdit)}
-                    className='cursor-pointer'
-                  >
-                    {locationEdit ? <FaRegWindowClose /> : <FaPencilAlt />}
-                  </div>
-                </div>
-                <div className='flex items-center space-x-3 mt-5 text-sm text-slate-500 '>
-                  <span>
-                    <FaExclamationCircle />
-                  </span>
-                  <p className=''>
-                    Your location will help us serve better and extend a
-                    personalised experience.
-                  </p>
-                </div>
-                {join ? (
-                  <div>
-                    <div className='flex items-center space-x-2 text-lg font-medium mt-8 text-[#6A6A6B]'>
-                      <span>
-                        <FaThumbsUp />
-                      </span>
-                      <span className='uppercase'>Recommended Groups</span>
-                    </div>
-                    <div className='mt-5'>
-                      <div className='flex items-center justify-between mb-3'>
-                        <div className='flex items-center space-x-2'>
-                          <img
-                            src='https://images.unsplash.com/photo-1526772662000-3f88f10405ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80'
-                            className='w-11 h-11 rounded-full object-cover'
-                            alt=''
-                          />{" "}
-                          <span className='font-medium'>Leisure</span>
-                        </div>
-                        <button className='bg-slate-300 p-1.5 font-medium px-3 rounded-md'>
-                          Follow
-                        </button>
-                      </div>
-                      <div className='flex items-center justify-between mb-3'>
-                        <div className='flex items-center space-x-2'>
-                          <img
-                            src='https://images.unsplash.com/photo-1601932151223-b66cde61b081?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1172&q=80'
-                            className='w-11 h-11 rounded-full object-cover'
-                            alt=''
-                          />{" "}
-                          <span className='font-medium'>Activism</span>
-                        </div>
-                        <button className='bg-slate-300 p-1.5 font-medium px-3 rounded-md'>
-                          Follow
-                        </button>
-                      </div>
-                      <div className='flex items-center justify-between mb-3'>
-                        <div className='flex items-center space-x-2'>
-                          <img
-                            src='https://images.unsplash.com/photo-1652950157010-47eac43b7297?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80'
-                            className='w-11 h-11 rounded-full object-cover'
-                            alt=''
-                          />{" "}
-                          <span className='font-medium'>MBA</span>
-                        </div>
-                        <button className='bg-slate-300 p-1.5 font-medium px-3 rounded-md'>
-                          Follow
-                        </button>
-                      </div>
-                      <div className='flex items-center justify-between mb-3'>
-                        <div className='flex items-center space-x-2'>
-                          <img
-                            src='https://images.unsplash.com/photo-1533327325824-76bc4e62d560?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80'
-                            className='w-11 h-11 rounded-full object-cover'
-                            alt=''
-                          />{" "}
-                          <span className='font-medium'>Philosophy</span>
-                        </div>
-                        <button className='bg-slate-300 p-1.5 font-medium px-3 rounded-md'>
-                          Follow
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                ) : (
-                  ""
-                )}
+                <FriendRequest></FriendRequest>
+                <Friends></Friends>
+                <GroupConversation></GroupConversation>
               </div>
             </div>
           </div>
