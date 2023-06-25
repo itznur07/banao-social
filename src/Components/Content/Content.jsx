@@ -3,6 +3,8 @@ import { FaPenAlt, FaUniversity } from "react-icons/fa";
 import FriendRequest from "../FriendReq/FriendRequest";
 import Friends from "../Friends/Friends";
 import GroupConversation from "../GroupConversation/GroupConversation";
+import Stories from "../Stories/Stories";
+import YourShortcuts from "../YourShortcuts/YourShortcuts";
 import PostCard from "./Post";
 
 const Content = ({ join }) => {
@@ -69,10 +71,11 @@ const Content = ({ join }) => {
           {" "}
           <div className='max-w-7xl mx-auto mt-10'>
             <div className='grid grid-cols-12 gap-20'>
-              <div className="col-span-3">
-
+              <div className='col-span-3'>
+                <YourShortcuts></YourShortcuts>
               </div>
               <div className='col-span-5'>
+                <Stories></Stories>
                 {posts.map((post) => (
                   <PostCard key={post.id} post={post} />
                 ))}

@@ -19,7 +19,7 @@ function GroupConversation() {
   return (
     <div className='bg-white border border-gray-300 rounded-md p-4 mb-4'>
       <div className='flex items-center justify-between mb-4'>
-        <h2 className='text-lg font-semibold'>Group Conver..</h2>
+        <h2 className='text-lg font-semibold'>Group Conversation</h2>
         <div className='flex items-center'>
           <button className='text-sm text-blue-500 flex items-center'>
             <FaBell className='mr-1' />
