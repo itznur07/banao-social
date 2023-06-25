@@ -1,18 +1,9 @@
-// import {
-//   GoogleAuthProvider,
-//   createUserWithEmailAndPassword,
-//   getAuth,
-//   onAuthStateChanged,
-//   signInWithEmailAndPassword,
-//   signInWithPopup,
-//   signOut,
-//   updateProfile,
-// } from "firebase/auth";
+import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, signInWithPopup } from "firebase/auth";
 import React, { createContext, useState } from "react";
-// import app from "../Firebase/firebase.config";
+import app from "../Firebase/firebase.config";
 
 export const AuthContext = createContext();
-// const auth = getAuth(app);
+const auth = getAuth(app);
 
 const AuthPorvider = ({ children }) => {
   const [user, setUser] = useState();
@@ -22,15 +13,15 @@ const AuthPorvider = ({ children }) => {
   /** Database Users */
 
   /** conmmunication with firebase */
-  // const createUserWithEmailPassword = (email, password) => {
-  //   setLoading();
-  //   return createUserWithEmailAndPassword(auth, email, password);
-  // };
+  const createUserWithEmailPassword = (email, password) => {
+    setLoading();
+    return createUserWithEmailAndPassword(auth, email, password);
+  };
 
-  // const signInWithGoogle = () => {
-  //   setLoading();
-  //   return signInWithPopup(auth, new GoogleAuthProvider());
-  // };
+  const signInWithGoogle = () => {
+    setLoading();
+    return signInWithPopup(auth, new GoogleAuthProvider());
+  };
 
   // const logInUserWithEmailPassword = (email, password) => {
   //   setLoading();
@@ -65,11 +56,11 @@ const AuthPorvider = ({ children }) => {
     user,
     loading,
     // dbUsers,
-    // createUserWithEmailPassword,
+    createUserWithEmailPassword,
     // logInUserWithEmailPassword,
     // logOut,
     // profileUpdate,
-    // signInWithGoogle,
+    signInWithGoogle,
   };
 
   return (
