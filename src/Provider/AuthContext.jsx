@@ -15,9 +15,7 @@ export const AuthContext = createContext();
 // const auth = getAuth(app);
 
 const AuthPorvider = ({ children }) => {
-  const [user, setUser] = useState({
-    name: "asif",
-  });
+  const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
   // const [dbUsers, setDbUsers] = useState([]);
 
