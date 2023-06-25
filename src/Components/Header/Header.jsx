@@ -49,13 +49,13 @@ const Navbar = () => {
                 Feeds
               </Link>
               <Link
-                to='/instructors'
+                to='/'
                 className='text-gray-500 hover:text-[#0A69DC] px-3 py-2 text-md font-medium'
               >
                 Post
               </Link>
               <Link
-                to='/classes'
+                to='/'
                 className='text-gray-500 hover:text-[#0A69DC] px-3 py-2 text-md font-medium'
               >
                 Reels
@@ -133,21 +133,21 @@ const Navbar = () => {
         <div className='px-2 pt-2 pb-3 space-y-1'>
           <Link
             to='/'
-            className='block text-sm px-3 py-2 text-gray-500 font-medium hover:text-[#49BBBD]'
+            className='block text-sm px-3 py-2 text-gray-500 font-medium hover:text-[#0A69DC]'
           >
-            Home
+            Feeds
           </Link>
           <Link
-            to='/instructors'
-            className='block text-sm px-3 py-2 text-gray-500 font-medium hover:text-[#49BBBD]'
+            to='/'
+            className='block text-sm px-3 py-2 text-gray-500 font-medium hover:text-[#0A69DC]'
           >
-            Instructors
+            Post
           </Link>
           <Link
-            to='/classes'
-            className='block text-sm px-3 py-2 text-gray-500 font-medium hover:text-[#49BBBD]'
+            to='/'
+            className='block text-sm px-3 py-2 text-gray-500 font-medium hover:text-[#0A69DC]'
           >
-            Classes
+            Reels
           </Link>
         </div>
         <div className='px-2 py-3 space-y-1'>
