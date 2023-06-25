@@ -6,7 +6,6 @@ const Home = () => {
   return (
     <>
       <Banner></Banner>
-      {/* <ContentNav></ContentNav> */}
       <Content></Content>
     </>
   );

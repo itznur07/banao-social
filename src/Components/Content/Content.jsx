@@ -76,6 +76,7 @@ const Content = ({ join }) => {
               </div>
               <div className='col-span-5'>
                 <Stories></Stories>
+                
                 {posts.map((post) => (
                   <PostCard key={post.id} post={post} />
                 ))}
