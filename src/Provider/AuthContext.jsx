@@ -1,5 +1,12 @@
-import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
-import React, { createContext, useState } from "react";
+import {
+  GoogleAuthProvider,
+  createUserWithEmailAndPassword,
+  getAuth,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+} from "firebase/auth";
+import React, { createContext, useEffect, useState } from "react";
 import app from "../Firebase/firebase.config";
 
 export const AuthContext = createContext();
@@ -8,6 +15,8 @@ const auth = getAuth(app);
 const AuthPorvider = ({ children }) => {
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
+  const [showPopup, setShowPopup] = useState(false);
+
   // const [dbUsers, setDbUsers] = useState([]);
 
   /** Database Users */
@@ -33,34 +42,35 @@ const AuthPorvider = ({ children }) => {
   //   return signOut(auth);
   // };
 
-  // const profileUpdate = (name, photo) => {
-  //   setLoading();
-  //   return updateProfile(auth.currentUser, {
-  //     displayName: name,
-  //     photoURL: photo,
-  //   });
-  // };
+  const profileUpdate = (name, photo) => {
+    setLoading();
+    return updateProfile(auth.currentUser, {
+      displayName: name,
+      photoURL: photo,
+    });
+  };
 
-  // useEffect(() => {
-  //   const unsubscibe = onAuthStateChanged(auth, (currentUser) => {
-  //     setUser(currentUser);
-  //     console.log(currentUser);
-  //     setLoading(false);
-  //   });
+  useEffect(() => {
+    const unsubscibe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      console.log(currentUser);
+      setLoading(false);
+    });
 
-  //   return () => {
-  //     unsubscibe();
-  //   };
-  // }, []);
+    return () => {
+      unsubscibe();
+    };
+  }, []);
 
   const authInfo = {
     user,
     loading,
+    showPopup,
     // dbUsers,
     createUserWithEmailPassword,
     logInUserWithEmailPassword,
     // logOut,
-    // profileUpdate,
+    profileUpdate,
     signInWithGoogle,
   };
 

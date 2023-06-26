@@ -9,7 +9,7 @@ import { AuthContext } from "../../Provider/AuthContext";
 
 const Signup = () => {
   const [show, setShow] = useState(false);
-  const { createUserWithEmailPassword, signInWithGoogle } =
+  const { createUserWithEmailPassword, signInWithGoogle, profileUpdate } =
     useContext(AuthContext);
   // useTitle("Create an account");
 
@@ -25,7 +25,7 @@ const Signup = () => {
     formState: { errors },
   } = useForm();
 
-  const handleSignUp = ({ email, password, name }) => {
+  const handleSignUp = ({ email, password, name, photo }) => {
     createUserWithEmailPassword(email, password)
       .then(() => {
         Swal.fire({
@@ -40,6 +40,7 @@ const Signup = () => {
             text: "text-slate-500",
           },
         });
+        profileUpdate(name, photo);
         navigate(from, { replace: true });
         reset();
       })

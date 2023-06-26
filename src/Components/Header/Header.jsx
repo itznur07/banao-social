@@ -1,12 +1,15 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthContext";
-// import { AuthContext } from "../../Providers/AuthContext";
 import logo from "../../assets/logo.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { user } = useContext(AuthContext);
+  const { user, showPopup } = useContext(AuthContext);
+
+  const handlePostClick = () => {
+    showPopup(!showPopup);
+  };
 
   //   const handleSignOut = () => {
   //     logOut()
@@ -48,12 +51,12 @@ const Navbar = () => {
               >
                 Feeds
               </Link>
-              <Link
-                to='/'
+              <button
+                onClick={handlePostClick}
                 className='text-gray-500 hover:text-[#0A69DC] px-3 py-2 text-md font-medium'
               >
                 Post
-              </Link>
+              </button>
               <Link
                 to='/'
                 className='text-gray-500 hover:text-[#0A69DC] px-3 py-2 text-md font-medium'

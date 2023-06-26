@@ -34,7 +34,7 @@ const Login = () => {
           title: "Congratulations!🎊",
           text: "You login successfull!",
           confirmButtonText: "Awesome!",
-          confirmButtonColor: "#49BBBD",
+          confirmButtonColor: "#0A69DC",
           iconColor: "text-green-500",
           customClass: {
             title: "text-green-500 text-3xl",
