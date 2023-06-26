@@ -1,36 +1,37 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 import { AuthContext } from "../../Provider/AuthContext";
 import logo from "../../assets/logo.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { user, showPopup } = useContext(AuthContext);
+  const { user, showPopup, logOut, setShowPopup } = useContext(AuthContext);
 
   const handlePostClick = () => {
-    showPopup(!showPopup);
+    setShowPopup(!showPopup);
   };
 
-  //   const handleSignOut = () => {
-  //     logOut()
-  //       .then(() => {
-  //         Swal.fire({
-  //           icon: "success",
-  //           title: "Logout",
-  //           text: "You logout successfull!",
-  //           confirmButtonText: "Awesome!",
-  //           confirmButtonColor: "#49BBBD",
-  //           iconColor: "text-green-500",
-  //           customClass: {
-  //             title: "text-green-500 text-3xl",
-  //             text: "text-slate-500",
-  //           },
-  //         });
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //       });
-  //   };
+  const handleSignOut = () => {
+    logOut()
+      .then(() => {
+        Swal.fire({
+          icon: "success",
+          title: "Logout",
+          text: "You logout successfull!",
+          confirmButtonText: "Awesome!",
+          confirmButtonColor: "#0A69DC",
+          iconColor: "text-green-500",
+          customClass: {
+            title: "text-green-500 text-3xl",
+            text: "text-slate-500",
+          },
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <nav className={`bg-white`}>
@@ -51,12 +52,7 @@ const Navbar = () => {
               >
                 Feeds
               </Link>
-              <button
-                onClick={handlePostClick}
-                className='text-gray-500 hover:text-[#0A69DC] px-3 py-2 text-md font-medium'
-              >
-                Post
-              </button>
+
               <Link
                 to='/'
                 className='text-gray-500 hover:text-[#0A69DC] px-3 py-2 text-md font-medium'
@@ -71,11 +67,17 @@ const Navbar = () => {
                 <>
                   <img
                     src={user?.photoURL}
-                    className='w-10 rounded-full'
+                    className='w-8 object-cover rounded-full'
                     alt='user'
                   />
                   <button
-                    // onClick={handleSignOut}
+                    onClick={handlePostClick}
+                    className='bg-[#0A69DC] hover:bg-blue-600 text-white font-bold py-1.5 px-4 rounded'
+                  >
+                    Post
+                  </button>
+                  <button
+                    onClick={handleSignOut}
                     className='bg-[#0A69DC] hover:bg-[#0A69DC] text-white px-3 py-1.5 text-md font-medium rounded'
                   >
                     Logout

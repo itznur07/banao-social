@@ -10,7 +10,7 @@ const Home = () => {
   return (
     <>
       <Banner></Banner>
-      {showPopup ? <PostPopup></PostPopup> : ""}
+      {showPopup ? <PostPopup ></PostPopup> : ""}
       <Content></Content>
     </>
   );

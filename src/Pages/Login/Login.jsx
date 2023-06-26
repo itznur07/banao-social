@@ -9,7 +9,7 @@ import login from "../../assets/login.svg";
 const Login = () => {
   // useTitle("Login");
   const [show, setShow] = useState(false);
-  const { logInUserWithEmailPassword, signInWithGoogle } =
+  const { logInUserWithEmailPassword, signInWithGoogle, forgetPassword } =
     useContext(AuthContext);
 
   const {
@@ -19,12 +19,10 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
-
   const navigate = useNavigate();
   const location = useLocation();
 
   const from = location?.state?.from?.pathname || "/";
-
 
   const handleSignIn = ({ email, password }) => {
     logInUserWithEmailPassword(email, password)
@@ -145,15 +143,12 @@ const Login = () => {
           {errors.password && (
             <span className='text-red-500'>{errors.password.message}</span>
           )}
-
-          <br />
         </div>
-        {/*         
-        <span className='text-sm mb-4 mt-2'>
+        <span className='text-sm font-medium mb-4 mt-2'>
           Forget password?{" "}
           <span className='text-blue-500 cursor-pointer'>reset</span>
-        </span> */}
-        {/* <br /> */}
+        </span>
+        <br />
         <button
           type='submit'
           className='bg-[#0A69DC] text-white w-full font-bold py-2 mt-4 px-4 rounded focus:outline-none focus:shadow-outline'

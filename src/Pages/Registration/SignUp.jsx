@@ -40,10 +40,23 @@ const Signup = () => {
             text: "text-slate-500",
           },
         });
+        /** Data Post */
+        const userData = { name, email, photo };
+        fetch("http://localhost:3000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(userData),
+        })
+          .then((res) => res.json())
+          .then((data) => {});
+          
         profileUpdate(name, photo);
         navigate(from, { replace: true });
         reset();
       })
+
       .catch((error) => {
         console.log(error);
       });
