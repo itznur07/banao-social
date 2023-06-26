@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { FaWindowClose } from "react-icons/fa";
+import Swal from "sweetalert2";
 import { AuthContext } from "../../Provider/AuthContext";
 
 const PostPopup = () => {
@@ -24,6 +25,8 @@ const PostPopup = () => {
       personName: user?.displayName,
       personImg: user?.photoURL,
       personEmail: user?.email,
+      like: 0,
+      comment: [],
     };
     fetch("http://localhost:3000/posts", {
       method: "POST",
@@ -35,8 +38,20 @@ const PostPopup = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.insertedId) {
-          alert("post successfully");
+          Swal.fire({
+            icon: "success",
+            title: "Post Submited",
+            text: "Your Post successfull!",
+            confirmButtonText: "Awesome!",
+            confirmButtonColor: "#0A69DC",
+            iconColor: "text-green-500",
+            customClass: {
+              title: "text-green-500 text-3xl",
+              text: "text-slate-500",
+            },
+          });
           setShowPopup(false);
+          location.reload();
         }
       });
   };

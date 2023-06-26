@@ -37,7 +37,7 @@ const Content = ({ join }) => {
   return (
     <>
       {isMobile ? (
-        <div className='mt-14  mx-auto p-5 absolute flex flex-col justify-center'>
+        <div className='mt-14  mx-auto p-5 md:absolute sm:fixed flex flex-col justify-center'>
           {posts?.map((post) => (
             <PostCard key={post.id} post={post} />
           ))}

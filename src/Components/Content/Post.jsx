@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaComment, FaEllipsisH, FaShare, FaThumbsUp } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const PostCard = ({ post }) => {
   const [comment, setComment] = useState("");
@@ -18,7 +19,34 @@ const PostCard = ({ post }) => {
     }
   };
 
-  const { image, title, personImg, personName } = post;
+  const handlePostDelete = (_id) => {
+    fetch(`http://localhost:3000/posts/${_id}`, {
+      method: "DELETE",
+      headers: {
+        "content-type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.deletedCount > 0) {
+          Swal.fire({
+            icon: "success",
+            title: "Post Delete",
+            text: "Your Post Deleted successfull!",
+            confirmButtonText: "Awesome!",
+            confirmButtonColor: "#0A69DC",
+            iconColor: "text-green-500",
+            customClass: {
+              title: "text-green-500 text-3xl",
+              text: "text-slate-500",
+            },
+          });
+          location.reload();
+        }
+      });
+  };
+
+  const { image, title, personImg, personName, _id } = post;
 
   return (
     <div className='border border-gray-300 rounded-md p-4 mb-4'>
@@ -42,10 +70,13 @@ const PostCard = ({ post }) => {
             {editDrop ? (
               <div className='absolute top-10  border space-y-1 right-4 w-44  bg-white shadow-lg p-5 rounded-md'>
                 <h1 className='cursor-pointer hover:text-indigo-400'>Edit</h1>
-                <h1 className='cursor-pointer hover:text-indigo-400'>Report</h1>
-                <h1 className='cursor-pointer hover:text-indigo-400'>
-                  Option 3
+                <h1
+                  onClick={() => handlePostDelete(_id)}
+                  className='cursor-pointer hover:text-indigo-400'
+                >
+                  Delete
                 </h1>
+                <h1 className='cursor-pointer hover:text-indigo-400'>Report</h1>
               </div>
             ) : (
               ""

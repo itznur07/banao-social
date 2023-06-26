@@ -142,12 +142,12 @@ const Navbar = () => {
           >
             Feeds
           </Link>
-          <Link
-            to='/'
+          <button
+            onClick={handlePostClick}
             className='block text-sm px-3 py-2 text-gray-500 font-medium hover:text-[#0A69DC]'
           >
             Post
-          </Link>
+          </button>
           <Link
             to='/'
             className='block text-sm px-3 py-2 text-gray-500 font-medium hover:text-[#0A69DC]'
