@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { FaComment, FaEllipsisH, FaShare, FaThumbsUp } from "react-icons/fa";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../Provider/AuthContext";
 
 const PostCard = ({ post }) => {
   const [comment, setComment] = useState("");
   const [editDrop, setEditDrop] = useState(false);
   const [comments, setComments] = useState([]);
+  const { setEditPopup } = useContext(AuthContext);
 
   const handleCommentChange = (e) => {
     setComment(e.target.value);
@@ -46,7 +48,27 @@ const PostCard = ({ post }) => {
       });
   };
 
-  const { image, title, personImg, personName, _id } = post;
+  const handlePostEdit = () => {
+    setEditPopup(true);
+  };
+
+  const handleLike = (id) => {
+    fetch(`http://localhost:3000/posts/${id}`, {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ like: 1 }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.updatedCount > 0) {
+          location.reload();
+        }
+      });
+  };
+
+  const { image, title, personImg, personName, _id, like } = post;
 
   return (
     <div className='border border-gray-300 rounded-md p-4 mb-4'>
@@ -69,7 +91,12 @@ const PostCard = ({ post }) => {
             </span>
             {editDrop ? (
               <div className='absolute top-10  border space-y-1 right-4 w-44  bg-white shadow-lg p-5 rounded-md'>
-                <h1 className='cursor-pointer hover:text-indigo-400'>Edit</h1>
+                <h1
+                  onClick={() => handlePostEdit(_id)}
+                  className='cursor-pointer hover:text-indigo-400'
+                >
+                  Edit
+                </h1>
                 <h1
                   onClick={() => handlePostDelete(_id)}
                   className='cursor-pointer hover:text-indigo-400'
@@ -89,7 +116,12 @@ const PostCard = ({ post }) => {
         <img src={image} alt='Post Image' className='mt-4 rounded-lg' />
       </div>
       <div className='border-b border-t border-gray-300 mt-4 flex items-center justify-around'>
-        <button className=' text-[#8A8C90] rounded-md px-4 py-2 flex items-center mr-2'>
+        <button
+          onClick={() => handleLike(_id)}
+          className={`${
+            like > 0 ? "text-[#0A69DC]" : "text-[#8A8C90]"
+          } rounded-md px-4 py-2 flex items-center mr-2`}
+        >
           <FaThumbsUp className='mr-2' /> Like
         </button>
         <button className=' text-[#8A8C90]  rounded-md px-4 py-2 flex items-center mr-2'>
@@ -106,12 +138,12 @@ const PostCard = ({ post }) => {
           {comments.map((comment, index) => (
             <div key={index} className='flex items-start mb-4'>
               <img
-                src='profile-image.jpg'
+                src={personImg}
                 alt='Profile Image'
                 className='w-8 h-8 rounded-full mr-3'
               />
               <div>
-                <p className='text-gray-800 mb-1'>User</p>
+                <p className='text-gray-800 mb-1'>{personName}</p>
                 <p className='text-gray-600'>{comment}</p>
               </div>
             </div>

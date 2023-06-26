@@ -40,8 +40,12 @@ const Signup = () => {
             text: "text-slate-500",
           },
         });
+        profileUpdate(name, photo);
+        navigate(from, { replace: true });
+        reset();
         /** Data Post */
         const userData = { name, email, photo };
+
         fetch("http://localhost:3000/users", {
           method: "POST",
           headers: {
@@ -51,12 +55,7 @@ const Signup = () => {
         })
           .then((res) => res.json())
           .then((data) => {});
-          
-        profileUpdate(name, photo);
-        navigate(from, { replace: true });
-        reset();
       })
-
       .catch((error) => {
         console.log(error);
       });
